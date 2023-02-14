@@ -1,0 +1,43 @@
+Microsoft Windows [version 10.0.22000.1455]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\xampp\htdocs\recettes_cuisine>git init
+Initialized empty Git repository in C:/xampp/htdocs/recettes_cuisine/.git/
+
+C:\xampp\htdocs\recettes_cuisine>git add --all
+
+C:\xampp\htdocs\recettes_cuisine>git commit  -m "projet_recette_cuisine"
+[master (root-commit) c4952ba] projet_recette_cuisine
+ 14 files changed, 124 insertions(+)
+ create mode 100644 index.php
+ create mode 100644 lib/base-de-donne.php
+ create mode 100644 lib/menu-privee.php
+ create mode 100644 vue/privee/gestion-page-form.php
+ create mode 100644 vue/privee/gestion-page.php
+ create mode 100644 vue/privee/gestion-user-form.php
+ create mode 100644 vue/privee/gestion-user.php
+ create mode 100644 vue/privee/tableau-bord.php
+ create mode 100644 vue/public/404.php
+ create mode 100644 vue/public/accueil.php
+ create mode 100644 vue/public/contact.php
+ create mode 100644 vue/public/login.php
+ create mode 100644 vue/public/mention-legale.php
+ create mode 100644 vue/public/recette.php
+
+C:\xampp\htdocs\recettes_cuisine>git branch -M main
+
+C:\xampp\htdocs\recettes_cuisine>git remote add origin https://github.com/KOITAGname/Recette_Cuisine.git
+
+C:\xampp\htdocs\recettes_cuisine>git push -u origin main
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (11/11), 2.41 KiB | 2.41 MiB/s, done.
+Total 11 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/KOITAGname/Recette_Cuisine.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+C:\xampp\htdocs\recettes_cuisine>
