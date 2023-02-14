@@ -1,7 +1,7 @@
 <?php
 session_start() ;
 require "lib/base-de-donne.php";
-//http://localhost/php-initiation/recettes_cuisine/index.php
+//http://localhost/recettes_cuisine/index.php
  ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,11 +55,11 @@ require "lib/base-de-donne.php";
         <!-- -------------- la partie public---------------- -->
         <?php if (empty($_GET)) :?>
             <?php require "vue/public/accueil.php" ?>
-        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "Recette") : ?>
-            <?php require "vue/public/Recette.php" ?>
+        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "recette") : ?>
+            <?php require "vue/public/recette.php" ?>
             <!-------------- routing => vers la page contact ------------->
-        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "Contact") : ?>
-            <?php require "vue/public/Contact.php" ?>
+        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "contact") : ?>
+            <?php require "vue/public/contact.php" ?>
              <!-------------- routing => vers la page login ------------->
         <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "login") : ?>
             <?php require "vue/public/login.php" ?> 
@@ -75,7 +75,7 @@ require "lib/base-de-donne.php";
                     "alert" => "success",
                     "info" => "vous avez été déconnecté avec succès"
                 ];
-                header("Location: http://localhost/php-initiation/projet/index.php?page=login");
+                header("Location: http://localhost/recettes_cuisine/index.php?page=login");
                 exit; // direction et stop 
             ?>
                 <!--    ---------------la partie privee -----------------   -->
@@ -85,7 +85,57 @@ require "lib/base-de-donne.php";
                       $_GET["page"] === "accueil" && 
                       $_GET["partie"] === "privee"): ?>
                 <?php require "vue/privee/tableau-bord.php" ?>
------------------------ else  -------------------------- -->
+
+                          <!-- --------------------gestion_user  --------------------------- -->
+
+        <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
+             $_GET["page"] === "user" && $_GET["partie"] === "privee"): ?>
+
+<!----------------- //pour creer un profil utilisateur  pour le ADD --------------------->
+            <?php if(!empty($_GET["action"]) && $_GET["action"] == "add" ) : ?>
+            <!-- nous  permet d'afficher la page ajout d'un nouveau profil -->
+                <?php require "vue/privee/gestion-user-form.php" ?>
+
+                //pour supprime un profil utilisateur  pour le DELETE----------------->
+            <?php elseif(!empty($_GET["action"]) && $_GET["action"] == "delete" ) : ?>
+<!---------------- nous permet de supprime un profil utilisateur ---------------->
+                <?php 
+                    $sth = $connexion->prepare("
+                        DELETE FROM users WHERE id = :id
+                    ");
+                    $sth->execute(["id" => $_GET["id"]]);
+                    header("Location: http://localhost/recettes_cuisine/index.php?page=user&partie=privee");
+                    exit ; 
+                ?>
+
+<!------------- //pour mettre a jour  un profil utilisateur  pour le  update------------>
+                <?php elseif(!empty($_GET["action"]) && $_GET["action"] ==  "update" ) : ?>
+<!--------- nous permet de faire la mise a jour (modifier) des profil utilisateur  ----------------->
+                    <?php 
+                    $sth = $connexion->prepare("
+                        SELECT * FROM users WHERE id = :id
+                    ");
+                    $sth->execute(["id" => $_GET["id"]]);
+                    $user = $sth->fetch();
+                    //pour teste 
+                    //var_dump($user);
+                ?>
+                <?php require "vue/privee/gestion-user-form.php" ?>
+
+
+
+                <?php else : ?>
+                        <?php require "vue/privee/gestion-user.php" ?>
+                <?php endif ?> 
+          
+
+
+<!-------------------------gestion_page  ---------------------------->
+
+            <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
+             $_GET["page"] === "page" &&
+            $_GET["partie"] === "privee"): ?>
+
         <?php else : ?>
                 <?php require "vue/public/404.php" ?>
         <?php endif ?> 
