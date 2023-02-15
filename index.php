@@ -14,7 +14,7 @@ require "lib/base-de-donne.php";
 </head>
 <body>
 
-<header class="bg-success">
+<header class="bg-primary">
         <nav class="navbar navbar-expand navbar-dark container">
             <span class="navbar-brand">👩‍🍳</span>
             <ul class="navbar-nav">
@@ -22,7 +22,7 @@ require "lib/base-de-donne.php";
                     <a href="index.php" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=recette" class="nav-link">Recette</a>
+                    <a href="index.php?page=recettes" class="nav-link">Recette</a>
                 </li>
                 <li class="nav-item">
                     <a href="index.php?page=contact" class="nav-link">Contact</a>
@@ -52,10 +52,12 @@ require "lib/base-de-donne.php";
     <div class="container">
           <!-- routing => url => page -->
 
-        <!-- -------------- la partie public---------------- -->
-        <?php if (empty($_GET)) :?>
+<!---------------------------- la partie public------------------------------>
+        <!-- si il nya rien affiche la page d'accueil -->
+<!--------------------------------- if ---------------------------------------------->
+        <?php if (empty($_GET)) :?> 
             <?php require "vue/public/accueil.php" ?>
-        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "recette") : ?>
+        <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "recettes") : ?>
             <?php require "vue/public/recette.php" ?>
             <!-------------- routing => vers la page contact ------------->
         <?php elseif(!empty($_GET["page"]) && $_GET["page"] === "contact") : ?>
@@ -86,7 +88,7 @@ require "lib/base-de-donne.php";
                       $_GET["partie"] === "privee"): ?>
                 <?php require "vue/privee/tableau-bord.php" ?>
 
-                          <!-- --------------------gestion_user  --------------------------- -->
+    <!-- --------------------gestion_user  --------------------------- -->
 
         <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
              $_GET["page"] === "user" && $_GET["partie"] === "privee"): ?>
@@ -96,50 +98,125 @@ require "lib/base-de-donne.php";
             <!-- nous  permet d'afficher la page ajout d'un nouveau profil -->
                 <?php require "vue/privee/gestion-user-form.php" ?>
 
-                //pour supprime un profil utilisateur  pour le DELETE----------------->
+<!------//pour supprime un profil utilisateur  pour le DELETE----------------->
+            <?php elseif(!empty($_GET["action"]) && $_GET["action"] == "delete" ) : ?>
+<!---------------- nous permet de supprime un profil utilisateur ---------------->
+
+        <?php 
+            $sth = $connexion->prepare("
+                DELETE FROM users WHERE id = :id
+            ");
+            $sth->execute(["id" => $_GET["id"]]);
+            header("Location: http://localhost/recettes_cuisine/index.php?page=user&partie=privee");
+            exit ; 
+        ?>
+
+<!------------- //pour mettre a jour  un profil utilisateur  pour le  update------------>
+                <?php elseif(!empty($_GET["action"]) && $_GET["action"] ==  "update" ) : ?>
+<!--------- nous permet de faire la mise a jour (modifier) des profil utilisateur  ----------------->
+            <?php 
+            $sth = $connexion->prepare("
+                SELECT * FROM users WHERE id = :id
+            ");
+            $sth->execute(["id" => $_GET["id"]]);
+            $user = $sth->fetch();
+            //pour teste 
+            //var_dump($user);
+        ?>
+        <?php require "vue/privee/gestion-user-form.php" ?>
+
+        <?php else : ?>
+                <?php require "vue/privee/gestion-user.php" ?>
+        <?php endif ?> 
+    
+<!-------------------------gestion_page  ---------------------------->
+
+            <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
+            $_GET["page"] === "page" &&
+            $_GET["partie"] === "privee"): ?>
+
+<!-------------------- gérer le CRUD des pages ajout -------------------------->
+
+<?php if(!empty($_GET["action"]) && $_GET["action"] == "add" ) : ?>
+                <?php require "vue/privee/gestion-page-form.php" ?>
+
+            <?php elseif(!empty($_GET["action"]) && $_GET["action"] == "delete" ) : ?>
+                <!-- suppression -->
+    <!-- suppresion du profil d'utilisateur dans la page -->
+                <?php 
+                    $sth = $connexion->prepare("
+                        DELETE FROM pages WHERE id = :id
+                    ");
+                    $sth->execute(["id" => $_GET["id"]]);
+                    header("Location: http://localhost/recettes_cuisine/index.php?page=page&partie=privee");
+                    exit ; 
+                ?>
+<!------------------ mise a jour des utilisateurs ------------------->
+            <?php elseif(!empty($_GET["action"]) && $_GET["action"] == "update" ) : ?>
+
+                <?php 
+                    $sth = $connexion->prepare("
+                        SELECT * FROM pages WHERE id = :id
+                    ");
+                    $sth->execute(["id" => $_GET["id"]]);
+                    $page = $sth->fetch();
+                ?>
+                <?php require "vue/privee/gestion-page-form.php" ?>
+
+            <?php else : ?>
+                <?php require "vue/privee/gestion-page.php" ?>
+            <?php endif ?>
+            
+    <!-- --------------------gestion_recette  --------------------------- -->
+
+        <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
+             $_GET["page"] === "recette" && $_GET["partie"] === "privee"): ?>
+             
+              <!------- //pour creer un profil utilisateur  pour le ADD -------->
+            <?php if(!empty($_GET["action"]) && $_GET["action"] == "add" ) : ?>
+            <!-- nous  permet d'afficher la page ajout d'un nouveau profil -->
+                <?php require "vue/privee/gestion-recette-form.php" ?>
+
+<!------------- //pour supprime un profil utilisateur  pour le DELETE----------------->
             <?php elseif(!empty($_GET["action"]) && $_GET["action"] == "delete" ) : ?>
 <!---------------- nous permet de supprime un profil utilisateur ---------------->
                 <?php 
                     $sth = $connexion->prepare("
-                        DELETE FROM users WHERE id = :id
+                        DELETE FROM recettes WHERE id = :id
                     ");
                     $sth->execute(["id" => $_GET["id"]]);
-                    header("Location: http://localhost/recettes_cuisine/index.php?page=user&partie=privee");
+                    header("Location: http://localhost/recettes_cuisine/index.php?page=recette&partie=privee");
                     exit ; 
                 ?>
 
 <!------------- //pour mettre a jour  un profil utilisateur  pour le  update------------>
                 <?php elseif(!empty($_GET["action"]) && $_GET["action"] ==  "update" ) : ?>
 <!--------- nous permet de faire la mise a jour (modifier) des profil utilisateur  ----------------->
-                    <?php 
-                    $sth = $connexion->prepare("
-                        SELECT * FROM users WHERE id = :id
-                    ");
-                    $sth->execute(["id" => $_GET["id"]]);
-                    $user = $sth->fetch();
-                    //pour teste 
-                    //var_dump($user);
-                ?>
-                <?php require "vue/privee/gestion-user-form.php" ?>
-
-
-
-                <?php else : ?>
-                        <?php require "vue/privee/gestion-user.php" ?>
-                <?php endif ?> 
-          
-
-
-<!-------------------------gestion_page  ---------------------------->
-
-            <?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
-             $_GET["page"] === "page" &&
-            $_GET["partie"] === "privee"): ?>
+            <?php 
+            $sth = $connexion->prepare("
+                SELECT * FROM recettes WHERE id = :id
+            ");
+            $sth->execute(["id" => $_GET["id"]]);
+            $user = $sth->fetch();
+            //pour teste 
+            //var_dump($user);
+        ?>
+        <?php require "vue/privee/gestion-recette-form.php" ?>
 
         <?php else : ?>
-                <?php require "vue/public/404.php" ?>
+                <?php require "vue/privee/gestion-recette.php" ?>
         <?php endif ?> 
+          
+
+<!---------------------------- fin partie privee -------------------------- -->
+
+<!---------------------------- else  -------------------------------------------- -->
+        <?php else : ?>
+                <?php require "vue/public/404.php" ?>
+        <?php endif ?>    
     </div>
-    
+    <footer class="my-3 text-center">
+        <a href="http://localhost/recettes_cuisine/index.php?page=mention" class="text-decoration-none">mentions légales</a>
+    </footer>
 </body>
 </html>

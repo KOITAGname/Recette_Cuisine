@@ -4,6 +4,6 @@
     <?php require "lib/menu-privee.php" ?>
     </div>
     <div class="col">
-        Bienvenu dans l'espace de gestion des recettes de cuisine de votre site internet
+        Bienvenu dans l'espace de gestion des recettes de cuisine de votre site 
     </div>
 </section>

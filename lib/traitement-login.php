@@ -28,7 +28,6 @@ if(count($erreurs) === 0){
     $_SESSION["user"] = $user ; 
    //unset($_SESSION["message"]); // supprimer une variable 
     // header("Location: http://localhost/recettes_cuisine/index.php?page=accueil&partie=privee");
-    header("Location: http://localhost/recettes_cuisine/index.php?page=accueil&partie=privee");
 }else{
     $_SESSION["message"] = [
         "alert" => "danger",
@@ -36,7 +35,7 @@ if(count($erreurs) === 0){
     ];
     // header("Location: http://localhost/recettes_cuisine/index.php?page=login");
     //deuxieme maniere de faire 
-    header("Location: http://localhost/recettes_cuisine/index.php?page=login");
+   
 }
 exit ;
 
