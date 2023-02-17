@@ -27,13 +27,13 @@ if(count($erreurs) === 0){
     //la ligne est deplacer dans message-flash.php
     $_SESSION["user"] = $user ; 
    //unset($_SESSION["message"]); // supprimer une variable 
-    // header("Location: http://localhost/recettes_cuisine/index.php?page=accueil&partie=privee");
+    header("Location: http://localhost/recettes_cuisine/index.php?page=accueil&partie=privee");
 }else{
     $_SESSION["message"] = [
         "alert" => "danger",
         "info" => $erreurs
     ];
-    // header("Location: http://localhost/recettes_cuisine/index.php?page=login");
+    header("Location: http://localhost/recettes_cuisine/index.php?page=login");
     //deuxieme maniere de faire 
    
 }

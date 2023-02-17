@@ -29,7 +29,7 @@
                 <input type="submit" class="btn btn-success">
             </div>
         </form>
-        <!-- <//?php require "lib/message-flash.php" ?> -->
+        <?php require "lib/message-flash.php" ?>
     </div>
 </section>
 <!-- ajouter un peu de js pour transformer le textarea en textarea enrichit => avec des boutons en dessus qui vont permettre de mettre du html dans le champ ! 

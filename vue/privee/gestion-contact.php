@@ -12,7 +12,7 @@ $sth = $connexion->prepare("
 ");
 //nous permet de recuperer les profils dans la base de donnees
 $sth->execute();
-$resultat = $sth->fetchAll();
+$contact = $sth->fetchAll();
 ?>
 <h1>Gestion des contacts</h1>
 <section class="row">
@@ -20,9 +20,9 @@ $resultat = $sth->fetchAll();
     <?php require "lib/menu-privee.php" ?>
     </div>
     <div class="col">
-        <div class="text-end mb-3">
-        <a href="http://localhost/recettes_cuisine/index.php?page=user&partie=privee&action=add" class="btn btn-primary">ajouter un nouveau contact</a> 
-        </div>
+        <!-- <div class="text-end mb-3"> -->
+         <a href="http://localhost/recettes_cuisine/index.php?page=contact&partie=privee&action=add" class="btn btn-primary">ajouter un nouveau contact</a> 
+        </div> 
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -33,17 +33,18 @@ $resultat = $sth->fetchAll();
                    
                 </tr>
             </thead>
-            <?php foreach($resultat as $user) : ?>
-            <td><?php echo htmlentities($user["id"]) ?></td>
-            <td><?php echo htmlentities($user["email"]) ?></td>
-            <td><?php echo htmlentities($user["commentaire"]) ?></td>
-            <td><?php echo htmlentities($user["dt_creation"]) ?></td>
+<!------ on fait appel a la variable contact declarer plus haut -------->
+            <?php foreach($contact as $c) : ?>
+            <td><?php echo htmlentities($c["id"]) ?></td>
+            <td><?php echo htmlentities($c["email"]) ?></td>
+            <td><?php echo htmlentities($c["commentaire"]) ?></td>
+            <td><?php echo htmlentities($c["dt_creation"]) ?></td>
             <td>
 <!-- le php dans le lien cliquable nous permet de modifier un profil utlisateur -->
-<a href="http://localhost/recettes_cuisine/index.php?page=user&partie=privee&action=update&id=<?php echo htmlentities($user["id"]) ?>" class="btn btn-warning me-2" > modifier</a>
+<a href="http://localhost/recettes_cuisine/index.php?page=contact&partie=privee&action=update&id=<?php echo htmlentities($c["id"]) ?>" class="btn btn-warning me-2" > modifier</a>
 
 <!-- le php dans le lien cliquable nous permet de suppimmer un profil utlisateur -->
-<a href="<?php echo "http://localhost/recettes_cuisine/index.php"?>?page=user&partie=privee&action=delete&id=<?php echo htmlentities($user["id"]) ?> class="btn btn-danger" onclick="return confirm('etes vous sur de vouloir supprimer ce profil')"> supprimer</a>
+<a href="<?php echo "http://localhost/recettes_cuisine/index.php"?>?page=contact&partie=privee&action=delete&id=<?php echo htmlentities($c["id"]) ?> class="btn btn-danger" onclick="return confirm('etes vous sur de vouloir supprimer ce profil')"> supprimer</a>
                     </td>
                 </tr>
                 <?php endforeach ?>

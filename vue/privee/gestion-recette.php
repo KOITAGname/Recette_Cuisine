@@ -15,7 +15,7 @@ dt_creation date et l'heure   -->
     SELECT id, nom , preparation,prix,categorie, image, auteur, DATE_FORMAT(dt_creation , '%d/%m/%Y') AS `dt_creation`  FROM recettes ;
     ");
     $sth->execute();
-    $pages = $sth->fetchAll();
+    $recette = $sth->fetchAll();
 ?>
 <h1>Gestion des Recettes</h1>
 <section class="row">
@@ -24,7 +24,7 @@ dt_creation date et l'heure   -->
     </div>
     <div class="col">
         <div class="text-end mb-3">
-            <a href=" http://localhost/recettes_cuisine/index.php?page=recette&partie=privee&action=add" class="btn btn-primary">ajouter une nouvelle recette</a>
+            <a href=" http://localhost/recettes_cuisine/index.php?page=recette&partie=privee&action=add" class="button">ajouter une nouvelle recette</a>
         </div>
        <!-- <//?php require "lib/message-flash.php" ?> -->
         <table class="table table-striped">
@@ -41,15 +41,15 @@ dt_creation date et l'heure   -->
         </tr>
             </thead>
             <tbody>
-
-            <?php foreach ($pages as $p) : ?>
+<!-- on fait appel a la variable recette declarer plus haut -->
+            <?php foreach ($recette as $p) : ?>
         <tr>
             <td><?php echo htmlentities($p["id"]) ?></td>
             <td><?php echo htmlentities($p["nom"]) ?></td>
             <td><?php echo htmlentities($p["preparation"]) ?></td>
             <td><?php echo htmlentities($p["prix"]) ?></td>
             <td><?php echo htmlentities($p["categorie"]) ?></td>
-            <td><img src="<?php echo htmlentities($p["image"]) ?>" alt="" width="100"></td>
+            <td><img src="<?php echo htmlentities($p["image"]) ?>" alt="" class="width:100%"></td>
             <td><?php echo htmlentities($p["auteur"]) ?></td>
             <td><?php echo htmlentities($p["dt_creation"]) ?></td>
             <td>

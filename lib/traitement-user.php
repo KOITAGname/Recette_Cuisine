@@ -21,7 +21,7 @@ if( empty($_POST["password"]) && !isset($_POST["id"]) ){
 if(strlen($_POST["nom"]) <= 4 || strlen($_POST["nom"]) >= 255){
     array_push($erreurs , "le champ nom doit contenir entre 4 et 255 lettres");
 }
-
+// traitement sur email
 if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
     array_push($erreurs , "l'email n'est pas conforme");
 }

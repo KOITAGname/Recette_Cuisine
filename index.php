@@ -11,12 +11,12 @@ require "lib/base-de-donne.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recettes_cuisine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
+    <link rel="stylesheet" href="style.css">
 <body>
 
-<header class="bg-primary">
+<header class="img">
         <nav class="navbar navbar-expand navbar-dark container">
-            <span class="navbar-brand">👩‍🍳</span>
+            <span class="navbar-brand">🍽️</span>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="index.php" class="nav-link">Accueil</a>
@@ -25,7 +25,7 @@ require "lib/base-de-donne.php";
                     <a href="index.php?page=recettes" class="nav-link">Recette</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=contact" class="nav-link">Contact</a>
+                    <a href="index.php?page=contact" class="nav-link">Nous Contact</a>
                 </li>
 
             </ul>
@@ -197,7 +197,7 @@ require "lib/base-de-donne.php";
                 SELECT * FROM recettes WHERE id = :id
             ");
             $sth->execute(["id" => $_GET["id"]]);
-            $user = $sth->fetch();
+            $recette = $sth->fetch();
             //pour teste 
             //var_dump($user);
         ?>
@@ -206,6 +206,15 @@ require "lib/base-de-donne.php";
         <?php else : ?>
                 <?php require "vue/privee/gestion-recette.php" ?>
         <?php endif ?> 
+
+<!-- --------------------gestion_contact  --------------------------- -->
+
+<?php elseif(!empty($_GET["page"]) && !empty($_GET["partie"]) &&
+             $_GET["page"] === "contact-tab" && //differente de la page contact.php
+             $_GET["partie"] === "privee"): ?>
+             <!-- affichage du tableaux contacts -->
+        <?php require "vue/privee/gestion-contact.php" ?>
+     
           
 
 <!---------------------------- fin partie privee -------------------------- -->

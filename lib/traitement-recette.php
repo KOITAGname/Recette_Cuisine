@@ -70,7 +70,7 @@ if(!isset($_POST["id"])){
     ];
 } else {
     $sth = $connexion->prepare("
-        UPDATE pages SET
+        UPDATE recettes SET
                         nom = :nom , 
                         preparation = :preparation  , 
                         prix = :prix  , 

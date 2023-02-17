@@ -17,9 +17,9 @@ dt_creation date et l'heure  -->
     </div>
 <div class="col">
 <div class="text-end mb-3">
-    <a href=" http://localhost/recettes_cuisine/index.php?page=page&partie=privee&action=add" class="btn btn-primary">ajouter une nouvelle page</a>
+    <a href=" http://localhost/recettes_cuisine/index.php?page=page&partie=privee&action=add" class="button">ajouter une nouvelle page</a>
 </div>
-<!-- <//?php require "lib/message-flash.php" ?> -->
+<?php require "lib/message-flash.php" ?>
 <table class="table table-striped">
     <thead>
         <tr>

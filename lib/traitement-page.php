@@ -34,7 +34,8 @@ if(strlen($_POST["contenu"]) <= 4 ||  strlen($_POST["contenu"]) >= 65000){
 $_SESSION["form"] = $_POST ;
 
 // si tout est ok 
- if(count($erreurs) === 0){
+ if(count($erreurs) === 0)
+ {
 //     $sth = $connexion->prepare("
 //         INSERT INTO pages
 //         ( titre , slug , contenu , image , auteur  , dt_creation)
@@ -69,6 +70,7 @@ if(!isset($_POST["id"])){
         WHERE id = :id
     ");
     $sth->execute($_POST);
+    var_dump($_post);
     $_SESSION["message"] = [
         "alert" => "success" ,
         "info" => "la page a bien été mise à jour en bdd "

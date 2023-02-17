@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body{
+    background-image: url(pexels-karolina-grabowska-4197822.jpg);
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+
+}
+
+
+.img{
+    background-color:  rgba(3, 95, 3, 0.884);
+}
+
+
+/* css pour la page d'acceuil */
+
+a {
+  text-decoration: none;
+  color: aquamarine;
+}
+
+header {
+  background-color: rgba(3, 95, 3, 0.884);
+  padding: 10px 60px;
+}
+header a {
+  color: #fff;
+}
+header .logo {
+  font: size 10px;
+}
+header .header-logo {
+  text-align: center;
+}
+
+.hero {
+  min-height: 600px;
+  padding: 30px;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 50px;
+}
+
+h1, h2 {
+  padding: 15px;
+  color: rgba(3, 95, 3, 0.884);
+  text-align: center;
+}
+
+.cards {
+  min-height: 1000px;
+  padding: 30px;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.card {
+  border-radius: 5px;
+  width: 400px;
+  height: 1100px;
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.822);
+}
+
+img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.button {
+  background-color: rgba(3, 95, 3, 0.884);
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 10px;
+  gap: 20px;
+}
+.button:hover {
+  background-color: rgba(6, 194, 6, 0.884);
+}/*# sourceMappingURL=style.css.map */

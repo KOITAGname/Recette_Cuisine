@@ -53,6 +53,6 @@
                 <input type="submit" class="btn btn-success">
             </div>
        </form>
-       <!-- <//?php require "lib/message-flash.php" ?> -->
+    <?php require "lib/message-flash.php" ?> 
     </div>
 </section>

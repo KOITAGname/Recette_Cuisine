@@ -20,7 +20,7 @@ $resultat = $sth->fetchAll();
     </div>
     <div class="col">
         <div class="text-end mb-3">
-        <a href="http://localhost/recettes_cuisine/index.php?page=user&partie=privee&action=add" class="btn btn-primary">ajouter un nouveau profil</a> 
+        <a href="http://localhost/recettes_cuisine/index.php?page=user&partie=privee&action=add" class="button">ajouter un nouveau profil</a> 
         </div>
         <table class="table table-striped">
             <thead>
