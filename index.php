@@ -11,7 +11,12 @@ require "lib/base-de-donne.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recettes_cuisine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="style.css">
+=======
+    <link rel="style.css" href="">
+</head>
+>>>>>>> dd787d3628b666ed054580b7540feae1e87bd207
 <body>
 
 <header class="img">

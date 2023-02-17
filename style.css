@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -100,3 +101,8 @@ img {
 .button:hover {
   background-color: rgba(6, 194, 6, 0.884);
 }/*# sourceMappingURL=style.css.map */
+=======
+body{
+    background-color: rgba(53, 228, 169, 0.856);
+}
+>>>>>>> dd787d3628b666ed054580b7540feae1e87bd207
